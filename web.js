@@ -1,9 +1,16 @@
 var express = require('express');
 
 var app = express.createServer(express.logger());
+var out = "";
+
+fs.readFileSync('/etc/passwd', function (err, data) {
+  if (err) throw err;
+  out = data;
+});
+
 
 app.get('/', function(request, response) {
-  response.send('Hello World2!');
+  response.send(data.toString());
 });
 
 var port = process.env.PORT || 5000;
